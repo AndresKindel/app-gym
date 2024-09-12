@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import News from './news'; 
+import Gyms from './gyms'; 
+import Tutorial from './tutorial';
 
-import News from './news'
-import Gyms from './gyms'
-
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="news" component={News} />
-    <Stack.Screen name="gyms" component={Gyms} />
-     </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="News">
+        <Drawer.Screen name="news" component={News} />
+        <Drawer.Screen name="gyms" component={Gyms} />
+        <Drawer.Screen name="tutorial" component={Tutorial} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
