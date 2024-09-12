@@ -1,58 +1,80 @@
 import * as React from 'react';
-import { View, Text, Image, Button, StyleSheet, BackHandler } from 'react-native';
-import { FlatList } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Linking } from 'react-native'
+import { View, Text, Image, Button, StyleSheet, BackHandler, FlatList, TouchableOpacity, Linking } from 'react-native';
+
 
 const DataExercicios = [
-    {NameExercicio: 'Supino Reto', ImgExercicio: 'https://treinomestre.com.br/wp-content/uploads/2014/01/supino-reto.jpg.webp', LinkVideo: 'https://www.youtube.com/watch?v=EZMYCLKuGow', Descricao: 'O supino reto é um exercício que trabalha principalmente o peitoral maior, o deltoide anterior e o tríceps braquial. É um dos exercícios mais populares e eficazes para o desenvolvimento do peitoral.' },
-    {NameExercicio: 'Agachamento Livre', ImgExercicio: '', LinkVideo: '', Descricao: ''},
-    {NameExercicio: 'Elevação Pelvica', ImgExercicio: '', LinkVideo: '', Descricao: ''},
-    {NameExercicio: 'Remada', ImgExercicio: '', LinkVideo: '', Descricao: ''},
-    {NameExercicio: 'Rosca Scott', ImgExercicio: '', LinkVideo: '', Descricao: ''},
-    {NameExercicio: 'Levantamento Terra', ImgExercicio: '', LinkVideo: '', Descricao: ''},
-  ];
+    { NameExercicio: 'Supino Reto', ImgExercicio: './assets/agachamento-livre.png', IdVideo: 'EZMYCLKuGow', Descricao: 'Trabalha peitoral, tríceps e deltoide anterior. Benefícios: fortalece o peitoral e melhora a estabilidade dos ombros.'},    
+    { NameExercicio: 'Agachamento Livre', ImgExercicio: './assets/agachamento-livre.png', IdVideo: 'CaTbpJH49i4', Descricao: 'Trabalha quadríceps, glúteos e lombar. Benefícios: melhora a força das pernas e o equilíbrio do core.' },
+    { NameExercicio: 'Elevação Pelvica', ImgExercicio: './assets/elevacao-pelvica.png', IdVideo: 'ptK0azwOXwM', Descricao: 'Trabalha glúteos e isquiotibiais. Benefícios: fortalece os glúteos e melhora a estabilidade do core.' },
+    { NameExercicio: 'Remada', ImgExercicio: './assets/remada.png', IdVideo: 'f8AVh4VBbos', Descricao: 'Trabalha costas, bíceps e trapézio. Benefícios: desenvolve a força das costas e melhora a postura.' },
+    { NameExercicio: 'Rosca Scott', ImgExercicio: './assets/rosca-scott.png', IdVideo: 'zpTK6eihdSA', Descricao: 'Trabalha bíceps. Benefícios: isola os bíceps, proporcionando maior definição e força.' },
+    { NameExercicio: 'Levantamento Terra', ImgExercicio: './assets/levantamento-terra.png', IdVideo: '50AkPBZwACQ', Descricao: 'Trabalha glúteos, lombar e pernas. Benefícios: aumenta a força total e melhora a postura.' },
+];
 
 export default function Tutorial({ navigation }) {
-    const handlePress = () => {
-        const url = 'https://www.google.com'; // A URL que você quer abrir
-    
-        return Linking.openURL(url)
+    const handlePress = (videoId) => {
+        const youtubeAppUrl = `vnd.youtube://${videoId}`;
+        const youtubeWebUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+
+        Linking.canOpenURL(youtubeAppUrl)
+            .then((supported) => {
+                if (supported) {
+                    return Linking.openURL(youtubeAppUrl);
+                } else {
+
+                    return Linking.openURL(youtubeWebUrl);
+                }
+            })
+            .catch((err) => Alert.alert('Erro', 'Não foi possível abrir o link.'));
     };
-  return (
-    <View>
-        <TouchableOpacity onPress={handlePress} style={styles.buttonView}>
-      <View style={styles.container}>
-        <Image style={styles.logo} source={require('./assets/snack-icon.png')} />
-        <Text style={styles.title} >Tutorial 1</Text>
-      </View>
-      </TouchableOpacity>
-      <View style={styles.button}>
-        <Button title="Ver Contatos" onPress={() => navigation.navigate('gyms')} />
-      </View>
-      <View style={styles.button}>
-        <Button title="Sair" onPress={() => BackHandler.exitApp() } />
-      </View>
-    </View>
+
+    const renderItem = ({ item }) => (
+        <TouchableOpacity onPress={() => handlePress(item.IdVideo)} style={styles.itemContainer}>
+          <Image style={styles.image} source={item.ImgExercicio} />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.NameExercicio}</Text>
+            <Text style={styles.description}>{item.Descricao}</Text>
+          </View>
+        </TouchableOpacity>
+      );
+
+    return (
+    <FlatList
+      data={DataExercicios}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.flatListContent}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  itemContainer: {
     flexDirection: 'row',
-    padding: 60,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    alignItems: 'center',
   },
-  logo: {
-    height: 70,
+  image: {
     width: 70,
+    height: 70,
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1,
   },
   title: {
-    padding: 30,
     fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  button: {
-    padding: 15
-  }
+  description: {
+    fontSize: 14,
+    color: '#666',
+  },
+  flatListContent: {
+    paddingBottom: 20,
+  },
 });
