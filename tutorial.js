@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { View, Text, Image, Button, StyleSheet, BackHandler, FlatList, TouchableOpacity, Linking } from 'react-native';
-
+import { View, Text, Image, Button, StyleSheet, FlatList, TouchableOpacity, Linking } from 'react-native';
 
 const DataExercicios = [
     { NameExercicio: 'Supino Reto', ImgExercicio: './assets/agachamento-livre.png', IdVideo: 'EZMYCLKuGow', Descricao: 'Trabalha peitoral, tríceps e deltoide anterior. Benefícios: fortalece o peitoral e melhora a estabilidade dos ombros.'},    
@@ -16,13 +15,11 @@ export default function Tutorial({ navigation }) {
         const youtubeAppUrl = `vnd.youtube://${videoId}`;
         const youtubeWebUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-
         Linking.canOpenURL(youtubeAppUrl)
             .then((supported) => {
                 if (supported) {
                     return Linking.openURL(youtubeAppUrl);
                 } else {
-
                     return Linking.openURL(youtubeWebUrl);
                 }
             })
@@ -52,7 +49,7 @@ export default function Tutorial({ navigation }) {
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
-    padding: 10,
+    padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     alignItems: 'center',
@@ -60,15 +57,19 @@ const styles = StyleSheet.create({
   image: {
     width: 70,
     height: 70,
-    marginRight: 10,
+    marginRight: 20,
+    borderWidth: 2,
+    borderColor: 'black', 
+    borderRadius: 10,
   },
   textContainer: {
     flex: 1,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign : 'center',
   },
   description: {
     fontSize: 14,
