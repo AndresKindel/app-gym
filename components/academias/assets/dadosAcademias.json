@@ -1,0 +1,47 @@
+[
+  {
+    "nome": "Academia Fit One",
+    "localizacao": "Rua das Flores, 123 - Centro, Florianópolis - SC",
+    "imagem": "",
+    "horarioFuncionamento": "Segunda a Sexta: 6h às 22h, Sábado: 8h às 14h",
+    "mensalidade": "R$ 150,00",
+    "telefoneContato": "(48) 1234-5678",
+    "whatsapp": "(48) 91234-5678"
+  },
+  {
+    "nome": "Academia BodyTech",
+    "localizacao": "Avenida Rio Branco, 456 - Centro, Florianópolis - SC",
+    "imagem": "",
+    "horarioFuncionamento": "Segunda a Sexta: 5h às 23h, Sábado: 8h às 18h",
+    "mensalidade": "R$ 200,00",
+    "telefoneContato": "(48) 2345-6789",
+    "whatsapp": "(48) 92345-6789"
+  },
+  {
+    "nome": "Academia Flex",
+    "localizacao": "Rua São João, 789 - Trindade, Florianópolis - SC",
+    "imagem": "",
+    "horarioFuncionamento": "Segunda a Sexta: 6h às 21h, Sábado: 9h às 13h",
+    "mensalidade": "R$ 180,00",
+    "telefoneContato": "(48) 3456-7890",
+    "whatsapp": "(48) 93456-7890"
+  },
+  {
+    "nome": "Academia Top Fitness",
+    "localizacao": "Avenida Jornalista Rubens de Arruda Ramos, 321 - Beira-Mar Norte, Florianópolis - SC",
+    "imagem": "",
+    "horarioFuncionamento": "Segunda a Sexta: 5h às 22h, Sábado: 8h às 15h",
+    "mensalidade": "R$ 220,00",
+    "telefoneContato": "(48) 4567-8901",
+    "whatsapp": "(48) 94567-8901"
+  },
+  {
+    "nome": "Academia Power Gym",
+    "localizacao": "Rua Dom Jaime Câmara, 654 - Santo Antônio de Lisboa, Florianópolis - SC",
+    "imagem": "",
+    "horarioFuncionamento": "Segunda a Sexta: 6h às 23h, Sábado: 9h às 14h",
+    "mensalidade": "R$ 170,00",
+    "telefoneContato": "(48) 5678-9012",
+    "whatsapp": "(48) 95678-9012"
+  }
+]

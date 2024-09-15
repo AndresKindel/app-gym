@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import News from './news'; 
-import Gyms from './gyms'; 
-import Tutorial from './tutorial';
+import NoticiasView from './components/noticias/noticiasView'; 
+import TutoriaisView from './components/tutoriais/tutoriaisView';
+import { SplashScreenView } from './components/splashScreenView';
+import AcademiasStackNavigator from './components/academias/academiasStackNavigator';
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreenView />;
+  }
+
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="News">
-        <Drawer.Screen name="news" component={News} />
-        <Drawer.Screen name="gyms" component={Gyms} />
-        <Drawer.Screen name="tutorial" component={Tutorial} />
+      <Drawer.Navigator>
+        <Drawer.Screen name="Notícias" component={NoticiasView} />
+        <Drawer.Screen name="Academias" component={AcademiasStackNavigator} />
+        <Drawer.Screen name="Tutoriais" component={TutoriaisView} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

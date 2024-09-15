@@ -1,0 +1,32 @@
+[
+    {
+      "tituloNoticia": "O sono é um grande aliado na jornada de emagrecimento",
+      "imgNoticia": "https://forbes.com.br/wp-content/uploads/2023/04/Saude_Sono-Dormir.jpg",
+      "urlNoticia": "https://forbes.com.br/forbessaude/2023/04/eduardo-rauen-o-sono-e-um-grande-aliado-na-jornada-de-emagrecimento/",
+      "descricao": "De 7 a 9 horas de sono são necessárias para descansar e ajustar a produção dos hormônios que orquestram o metabolismo e a regulação do apetite."
+    },
+    {
+      "tituloNoticia": "O jejum pode ajudá-lo a viver mais? Confira o que a ciência diz",
+      "imgNoticia": "https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/mm9164_220625_02868_0.webp?w=760&h=539",
+      "urlNoticia": "https://www.nationalgeographicbrasil.com/ciencia/2023/01/o-jejum-pode-ajuda-lo-a-viver-mais-confira-o-que-a-ciencia-diz",
+      "descricao": "Trata-se de uma prática popular, e pesquisas mostram que ela traz benefícios reais para a saúde. Uma nova dieta que engana seu corpo fazendo-o pensar que está em jejum pode ter benefícios semelhantes."
+    },
+    {
+      "tituloNoticia": "Não pode levantar peso? Mitos e verdades da musculação na terceira idade",
+      "imgNoticia": "https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2024/05/08/1433258294-musculacao-para-idosos.jpg",
+      "urlNoticia": "https://www.terra.com.br/vida-e-estilo/saude/nao-pode-levantar-peso-mitos-e-verdades-da-musculacao-na-terceira-idade,116855a3cc062b3b082883b62cc725142vk62tjd.html#",
+      "descricao": "Não são apenas jovens que se beneficiam da prática das atividades físicas. Na terceira idade também é possível se exercitar para cuidar da saúde."
+    },
+    {
+      "tituloNoticia": "Benefícios do alongamento vão além da preparação para atividades físicas",
+      "imgNoticia": "https://portaldrauziovarella.nyc3.digitaloceanspaces.com/wp-content/uploads/2023/08/29184749/2023_08_DRAUZIO_SITE_MATERIA_ILUSTRADA_thumb_alongamento_ajuda_musculos.jpg",
+      "urlNoticia": "https://drauziovarella.uol.com.br/atividade-fisica/beneficios-do-alongamento-vao-alem-da-preparacao-para-atividades-fisicas/",
+      "descricao": "Exercícios de alongamento para a musculatura podem ser feitos antes de atividades físicas e também em outros momentos do dia, como ao acordar."
+    },
+    {
+      "tituloNoticia": "10 exercícios e hábitos que melhoram a saúde cardiovascular",
+      "imgNoticia": "https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/08/14/1438770876-shutterstock2082243412.jpg",
+      "urlNoticia": "https://www.terra.com.br/vida-e-estilo/saude/10-exercicios-e-habitos-que-melhoram-a-saude-cardiovascular,5223ae160c3c7295f4d7959747095d01g5i0em7n.html",
+      "descricao": "Veja como evitar doenças cardiovasculares e garantir que o coração continue a bater com força e por muitos anos."
+    }
+]
