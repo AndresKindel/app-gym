@@ -28,6 +28,12 @@ export default function AcademiasDetalhesView() {
                     <Text style={styles.iconText}>Telefone</Text>
                 </TouchableOpacity>
             </View>
+            <View style={styles.iconContainer}>
+                <TouchableOpacity style={styles.iconContainer} onPress={() => Linking.openURL(`whatsapp://send?phone=55${academia.whatsapp}`)}>
+                    <Icon name="chat" size={24} color="#25D366" />
+                    <Text style={styles.iconText}>WhatsApp</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -60,6 +66,8 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         alignItems: 'center',
+        flexDirection: 'row',
+        marginVertical: 5,
     },
     iconText: {
         marginTop: 5,
