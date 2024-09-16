@@ -2,7 +2,7 @@
   {
     "nome": "Academia Fit One",
     "localizacao": "Rua das Flores, 123 - Centro, Florianópolis - SC",
-    "imagem": "",
+    "imagem": "https://static.wixstatic.com/media/9795c7_a724d80028cf4f35a2df97ce149cd0f5~mv2.png/v1/crop/x_0,y_232,w_1080,h_690/fill/w_205,h_131,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Design%20sem%20nome%20(2).png",
     "horarioFuncionamento": "Segunda a Sexta: 6h às 22h, Sábado: 8h às 14h",
     "mensalidade": "R$ 150,00",
     "telefoneContato": "(48) 1234-5678",
@@ -11,7 +11,7 @@
   {
     "nome": "Academia BodyTech",
     "localizacao": "Avenida Rio Branco, 456 - Centro, Florianópolis - SC",
-    "imagem": "",
+    "imagem": "https://gsobmidia.com.br/uploads/lojas/1906/download_1645097596.png",
     "horarioFuncionamento": "Segunda a Sexta: 5h às 23h, Sábado: 8h às 18h",
     "mensalidade": "R$ 200,00",
     "telefoneContato": "(48) 2345-6789",
@@ -20,7 +20,7 @@
   {
     "nome": "Academia Flex",
     "localizacao": "Rua São João, 789 - Trindade, Florianópolis - SC",
-    "imagem": "",
+    "imagem": "https://flexlages.com.br/wp-content/uploads/2022/09/LOGO-FLEX-FIT.png",
     "horarioFuncionamento": "Segunda a Sexta: 6h às 21h, Sábado: 9h às 13h",
     "mensalidade": "R$ 180,00",
     "telefoneContato": "(48) 3456-7890",
@@ -29,7 +29,7 @@
   {
     "nome": "Academia Top Fitness",
     "localizacao": "Avenida Jornalista Rubens de Arruda Ramos, 321 - Beira-Mar Norte, Florianópolis - SC",
-    "imagem": "",
+    "imagem": "https://images.partners.gympass.com/image/partners/2ade00f5-c768-4be8-87bb-05b269fbd05e/b88b70a3-9ecf-4b6f-831c-c05f5616f7e4_C663B16373F4404697BF592DA820AE44.jpeg",
     "horarioFuncionamento": "Segunda a Sexta: 5h às 22h, Sábado: 8h às 15h",
     "mensalidade": "R$ 220,00",
     "telefoneContato": "(48) 4567-8901",
@@ -38,7 +38,7 @@
   {
     "nome": "Academia Power Gym",
     "localizacao": "Rua Dom Jaime Câmara, 654 - Santo Antônio de Lisboa, Florianópolis - SC",
-    "imagem": "",
+    "imagem": "https://kennedyemdia.com.br/images/noticias/11671/30102020104559_power-fitn.jpg",
     "horarioFuncionamento": "Segunda a Sexta: 6h às 23h, Sábado: 9h às 14h",
     "mensalidade": "R$ 170,00",
     "telefoneContato": "(48) 5678-9012",

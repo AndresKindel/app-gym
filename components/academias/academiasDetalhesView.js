@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -17,12 +17,16 @@ export default function AcademiasDetalhesView() {
             <Text style={styles.info}>Telefone para Contato: {academia.telefoneContato}</Text>
             <Text style={styles.info}>WhatsApp: {academia.whatsapp}</Text>
             <View style={styles.iconContainer}>
-                <Icon name="location-on" size={24} color="#000" />
-                <Text style={styles.iconText}>Localização</Text>
+            <TouchableOpacity style={styles.iconContainer} onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(academia.localizacao)}`)}>
+                    <Icon name="location-on" size={24} color="#000" />
+                    <Text style={styles.iconText}>Localização</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.iconContainer}>
-                <Icon name="chat" size={24} color="#25D366" />
-                <Text style={styles.iconText}>WhatsApp</Text>
+                <TouchableOpacity style={styles.iconContainer} onPress={() => Linking.openURL(`tel:${academia.telefoneContato}`)}>
+                    <Icon name="call" size={24} color="#25D366" />
+                    <Text style={styles.iconText}>Telefone</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -37,8 +41,9 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 200,
-        marginBottom: 20,
+        height: 250,
+        marginBottom: 40,
+        resizeMode: 'contain',
     },
     title: {
         fontSize: 24,
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         alignItems: 'center',
-      },
+    },
     iconText: {
         marginTop: 5,
         fontSize: 16,

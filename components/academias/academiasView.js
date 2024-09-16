@@ -8,7 +8,7 @@ export default function AcademiasView() {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('Detalhes Academia', { academia: item })} style={styles.itemContainer}>
-      <Image style={styles.image} source={item.imagem} />
+      <Image style={styles.image} source={item.imagem ? { uri: item.imagem } : null} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.nome}</Text>
         <Text style={styles.description}>{item.localizacao}</Text>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 10,
+    resizeMode: 'contain',
   },
   textContainer: {
     flex: 1,
