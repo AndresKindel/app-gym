@@ -19,13 +19,16 @@ export default function TutoriaisView() {
   };
 
   const renderItem = ({ item }) => (
-      <TouchableOpacity onPress={() => handlePress(item.idVideo)} style={styles.itemContainer}>
-        <Image style={styles.image} source={{ uri: item.imgExercicio }} />
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{item.tituloExercicio}</Text>
-          <Text style={styles.description}>{item.descricao}</Text>
-        </View>
-      </TouchableOpacity>
+    <TouchableOpacity onPress={() => handlePress(item.idVideo)} style={styles.itemContainer}>
+      <Image style={styles.image} source={{ uri: item.imgExercicio }} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.tituloExercicio}</Text>
+        <Text style={styles.description}>{item.descricao}</Text>
+      </View>
+      <View style={styles.timerContainer}>
+        <Text style={styles.timer}>{item.videoLength}</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -69,5 +72,14 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingBottom: 20,
+  },
+  timerContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  timer: {
+    fontSize: 12,
+    color: 'red',
+    textAlign: 'right',
   },
 });
