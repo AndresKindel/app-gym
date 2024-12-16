@@ -6,7 +6,7 @@ export function InputScreen({ navigation }) {
 
   const sendValueToBackend = async (newValue) => {
     try {
-      const response = await fetch('', {
+      const response = await fetch('http://192.168.1.4:8000/controller', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

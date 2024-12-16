@@ -14,7 +14,7 @@ const mandarDadosParaEmbarcado = (value) => {
 
 const router = express.Router();
 
-router.post("/send-value", (req, res) => {
+router.post("/controller", (req, res) => {
   const { value } = req.body;
 
   if (typeof value !== "number" || isNaN(value)) {
