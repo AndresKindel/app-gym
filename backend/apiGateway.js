@@ -18,5 +18,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(8000, () => {
-  console.log("API Gateway iniciado!");
+  console.log("API Gateway iniciado na porta 8000!");
 });

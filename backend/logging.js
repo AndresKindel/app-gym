@@ -1,33 +1,37 @@
 const porta = 8090;
 const express = require("express");
+const bodyParser = require("body-parser");
+const fetch = require("node-fetch");
+
 const app = express();
 
-app.listen(porta, () => {
-  console.log("Servidor em execução na porta: " + porta);
-});
 
-const bodyParser = require("body-parser");
+const ARDUINO_IP = "192.168.0.10"; // Ajustar conforme o IP obtido no serial do Arduino
 
-const teste = 35;
-
-const getSensorData = () => {
-  console.log("Dados lidos do sensor:" + teste);
-  return teste;
-};
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const router = express.Router();
 
-router.get("/logging", (req, res) => {
+router.get("/logging", async (req, res) => {
   try {
-    const data = getSensorData();
+    const response = await fetch(`http://${ARDUINO_IP}/logging`);
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error("Erro ao obter dados do Arduino:", errText);
+      return res.status(500).json({ error: "Erro ao obter dados do sensor." });
+    }
 
-    res.status(200).json({ sensorData: data });
+    const data = await response.json();
+    res.status(200).json(data);
   } catch (error) {
     console.error("Erro ao buscar dados do sensor:", error);
     res.status(500).json({ error: "Erro ao processar a requisição para o sensor." });
   }
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", router);
+
+app.listen(porta, () => {
+  console.log("Servidor LOGGING em execução na porta: " + porta);
+});

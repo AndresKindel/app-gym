@@ -1,20 +1,18 @@
 const porta = 8080;
 const express = require("express");
+const bodyParser = require("body-parser");
+const fetch = require("node-fetch");
+
 const app = express();
 
-app.listen(porta, () => {
-  console.log("Servidor em execução na porta: " + porta);
-});
+const ARDUINO_IP = "192.168.0.10"; // Ajustar conforme o IP obtido no serial do Arduino
 
-const bodyParser = require("body-parser");
-
-const mandarDadosParaEmbarcado = (value) => {
-  console.log("Valor enviado ao sistema embarcado:", value);
-};
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const router = express.Router();
 
-router.post("/controller", (req, res) => {
+router.post("/controller", async (req, res) => {
   const { value } = req.body;
 
   if (typeof value !== "number" || isNaN(value)) {
@@ -22,15 +20,28 @@ router.post("/controller", (req, res) => {
   }
 
   try {
-    mandarDadosParaEmbarcado(value);
+    const response = await fetch(`http://${ARDUINO_IP}/controller`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ value })
+    });
 
-    res.status(200).json({ message: "Valor enviado com sucesso!" });
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error("Erro ao enviar valor para Arduino:", errText);
+      return res.status(response.status).json({ error: "Falha ao enviar valor para Arduino." });
+    }
+
+    const jsonResp = await response.json();
+    return res.status(200).json({ message: jsonResp.message || "Valor enviado com sucesso!" });
   } catch (error) {
-    console.error("Erro ao enviar valor para o sistema embarcado:", error);
+    console.error("Erro ao comunicar com o Arduino:", error);
     res.status(500).json({ error: "Erro ao processar a requisição." });
   }
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", router);
+
+app.listen(porta, () => {
+  console.log("Servidor CONTROLLER em execução na porta: " + porta);
+});
