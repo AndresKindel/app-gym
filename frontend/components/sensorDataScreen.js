@@ -8,7 +8,7 @@ export function SensorDataScreen({ route }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.1.4:8000/logging');
+        const response = await fetch('http://192.168.31.185:8000/logging');
         
         if (!response.ok) {
           throw new Error('Erro ao buscar dados do backend');
