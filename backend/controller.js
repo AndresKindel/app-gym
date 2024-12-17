@@ -1,46 +1,57 @@
-const porta = 8080;
+// controller.js
 const express = require("express");
 const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
+const { SerialPort, ReadlineParser } = require("serialport");
 
 const app = express();
+const porta = 8080;
 
-const ARDUINO_IP = "192.168.0.10"; // Ajustar conforme o IP obtido no serial do Arduino
+const port = new SerialPort({ path: "COM5", baudRate: 9600 });
+const parser = port.pipe(new ReadlineParser({ delimiter: "\n" }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-const router = express.Router();
+let pendingResponse = null;
 
-router.post("/controller", async (req, res) => {
-  const { value } = req.body;
-
-  if (typeof value !== "number" || isNaN(value)) {
-    return res.status(400).json({ error: "O valor enviado deve ser um número válido." });
-  }
-
+parser.on("data", (data) => {
+  data = data.trim();
   try {
-    const response = await fetch(`http://${ARDUINO_IP}/controller`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ value })
-    });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error("Erro ao enviar valor para Arduino:", errText);
-      return res.status(response.status).json({ error: "Falha ao enviar valor para Arduino." });
+    const jsonData = JSON.parse(data);
+    if (jsonData.status && pendingResponse) {
+      pendingResponse.status(200).json(jsonData);
+      pendingResponse = null;
     }
-
-    const jsonResp = await response.json();
-    return res.status(200).json({ message: jsonResp.message || "Valor enviado com sucesso!" });
   } catch (error) {
-    console.error("Erro ao comunicar com o Arduino:", error);
-    res.status(500).json({ error: "Erro ao processar a requisição." });
+    console.error("Erro ao processar resposta do Arduino:", error.message);
   }
 });
 
-app.use("/", router);
+app.post("/controller", (req, res) => {
+  const { value } = req.body;
+
+  if (typeof value !== "number" || isNaN(value) || value < 0 || value > 50) {
+    return res.status(400).json({ error: "O valor deve ser um número entre 0 e 50." });
+  }
+
+  const comando = `POST /controller:${value}\n`;
+  console.log("Enviando comando para Arduino:", comando);
+
+  port.write(comando, (err) => {
+    if (err) {
+      console.error("Erro ao enviar comando:", err.message);
+      return res.status(500).json({ error: "Erro na comunicação com o Arduino." });
+    }
+
+    pendingResponse = res;
+
+    setTimeout(() => {
+      if (pendingResponse) {
+        pendingResponse.status(500).json({ error: "Timeout: Sem resposta do Arduino." });
+        pendingResponse = null;
+      }
+    }, 3000);
+  });
+});
 
 app.listen(porta, () => {
   console.log("Servidor CONTROLLER em execução na porta: " + porta);

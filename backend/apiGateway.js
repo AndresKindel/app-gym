@@ -12,7 +12,7 @@ function selectProxyHost(req) {
 }
 
 app.use((req, res, next) => {
-  var proxyHost = selectProxyHost(req);
+  const proxyHost = selectProxyHost(req);
   if (proxyHost == null) res.status(404).send("Not found");
   else httpProxy(proxyHost)(req, res, next);
 });
